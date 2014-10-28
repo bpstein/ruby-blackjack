@@ -1,3 +1,8 @@
+# Calculate total value of cards held
+def calculate_total(cards) 
+	# [['H', '3'], ['C', '2'], ... ]
+end
+
 # Welcome message
 puts "Welcome to Blackjack!"
 
@@ -25,17 +30,25 @@ dealer_cards << deck.pop
 player_cards << deck.pop
 dealer_cards << deck.pop
 
-puts "Player is dealt " + player_cards.to_s
-puts "Dealer is dealt " + dealer_cards.to_s
+# Variables to calculate total value of cards
+player_total = calculate_total(player_cards)
+dealer_total = calculate_total(dealer_cards)
+
+# Show cards
+puts "Dealer is dealt #{dealer_cards[0]} and #{dealer_cards[1]}; total: dealer_total"
+puts "Player is dealt #{player_cards[0]} and #{player_cards[1]}; total: player_total"
+puts ""
+
+# Give player option to hit or stay
+puts "What would you like to do? 1) hit 2) stay"
+hit_or_stay = gets.chomp
 
 
 # Assign numerical values to the cards, including J, Q, K, A
 
 # Assign 1 or 11 numerical value to A card
 
-# Player dealt two cards
 
-# Computer dealt two cards
 
 # Player can hit or stay (loop until chooses to stop)
 
