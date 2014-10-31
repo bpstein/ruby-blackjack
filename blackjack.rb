@@ -1,10 +1,27 @@
 # Calculate total value of cards held
 def calculate_total(cards) 
-	# [['H', '3'], ['C', '2'], ... ]
+  # [['H', '3'], ['C', '2'], ... ]
+  arr = cards.map{|e| e[1]}
+
+  total = 0
+  arr.each do |value|
+  	if value.to_i == 0
+  		total = total + 10
+  	else
+  		total += value.to_i
+  	end
+  end
+
+  total
 end
 
 # Welcome message
 puts "Welcome to Blackjack!"
+
+
+# End message
+puts "Dealing cards..."
+puts ""
 
 # Build the deck of cards
 suits = ['H', 'D', 'C', 'S']
@@ -16,8 +33,8 @@ deck = suits.product(cards)
 # Note: alternative syntax for product is:
 # deck = []
 # suits.each do |suit|
-# 	cards.each do |card|
-# 		deck << [suit, card]
+#   cards.each do |card|
+#     deck << [suit, card]
 
 deck.shuffle!
 
