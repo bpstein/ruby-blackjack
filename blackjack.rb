@@ -5,11 +5,18 @@ def calculate_total(cards)
 
   total = 0
   arr.each do |value|
-  	if value.to_i == 0
+  	if value == "A"
+  		total += 11
+  	elsif value.to_i == 0 # i.e. J, Q or K
   		total = total + 10
   	else
   		total += value.to_i
   	end
+  end
+
+  # Correct for Aces
+  arr.select{|e| e == "A"}.count.times do
+  	total -= 10 if total > 21
   end
 
   total
@@ -76,4 +83,3 @@ hit_or_stay = gets.chomp
 # 
 
 # Highest card combination wins, up to a cap of 21
-
