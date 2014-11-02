@@ -59,8 +59,8 @@ player_total = calculate_total(player_cards)
 dealer_total = calculate_total(dealer_cards)
 
 # Show cards
-puts "Dealer is dealt #{dealer_cards[0]} and #{dealer_cards[1]}; total: dealer_total"
-puts "Player is dealt #{player_cards[0]} and #{player_cards[1]}; total: player_total"
+puts "Dealer is dealt #{dealer_cards[0]} and #{dealer_cards[1]}; total: #{dealer_total}"
+puts "Player is dealt #{player_cards[0]} and #{player_cards[1]}; total: #{player_total}"
 puts ""
 
 # Give player option to hit or stay
