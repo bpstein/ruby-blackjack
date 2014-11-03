@@ -24,6 +24,7 @@ end
 
 # Welcome message
 puts "Welcome to Blackjack!"
+puts ""
 
 
 # End message
@@ -63,23 +64,87 @@ puts "Dealer is dealt #{dealer_cards[0]} and #{dealer_cards[1]}; total: #{dealer
 puts "Player is dealt #{player_cards[0]} and #{player_cards[1]}; total: #{player_total}"
 puts ""
 
-# Give player option to hit or stay
-puts "What would you like to do? 1) hit 2) stay"
-hit_or_stay = gets.chomp
+# Player turn
+if player_total == 21
+	puts "Congratulations, you hit Blackjack! You win!"
+	exit
+end
 
+while player_total < 21
+	puts "What would you like to do? 1) hit 2) stay"
+	hit_or_stay = gets.chomp
 
-# Assign numerical values to the cards, including J, Q, K, A
+	if !['1', '2'].include?(hit_or_stay)
+		puts "Error: you must enter either 1 or 2."
+		next
+	end
 
-# Assign 1 or 11 numerical value to A card
+	# If user chooses to stay
+	if hit_or_stay == "2"
+		puts "You chose to stay."
+		break
+	end
 
+	# If user chooses to hit
+	new_card = deck.pop
+	puts "Dealing card to player: #{new_card}"
+	player_cards << new_card
+	player_total = calculate_total(player_cards)
+	puts "Your total is now #{player_total}"
 
+	# Outcome at the end of the player's turn
+	if player_total == 21
+		puts "Congratulations! You hit Blackjack! You win!"
+		exit
+	elsif player_total > 21 
+		puts "Sorry, it looks like you busted!"
+		exit
+	end
+end
 
-# Player can hit or stay (loop until chooses to stop)
+# Dealer turn
 
-# Computer can hit or stay
+if dealer_total == 21
+	puts "Sorry, the dealer hit Blackjack. You lose!"
+	exit
+end
 
-# Computer must hit >= 16
+while dealer_total < 17
+	# Dealer hit
+	new_card = deck.pop
+	puts "Dealing new card for dealer: #{new_card}"
+	dealer_cards << new_card
+	dealer_total = calculate_total(dealer_cards)
+	puts "Dealer total is now: #{dealer_total}"
 
-# 
+	if dealer_total == 21
+		puts "Sorry, dealer hit Blackjack. You lose!"
+		exit
+	elsif dealer_total > 21
+		puts "Congratulations, dealer busted. You win!"
+		exit
+	end
+end
 
-# Highest card combination wins, up to a cap of 21
+# Compare hands
+puts "Dealer's cards: "
+dealer_cards.each do |card|
+	puts "=> #{card}"
+end
+puts ""
+
+puts "Your cards: "
+player_cards.each do |card|
+	puts "=> #{card}"
+end
+puts ""
+
+if dealer_total > player_total
+	puts "Sorry, dealer wins"
+elsif dealer_total < player_total
+	puts "Congratulations, you win!"
+else 
+	puts "It's a tie..."
+end
+
+exit
