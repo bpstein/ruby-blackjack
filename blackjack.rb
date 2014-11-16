@@ -46,10 +46,11 @@ game_deck = deck * 4
 #     deck << [suit, card]
 
 game_deck.shuffle!
-
+loop do
 	# Deal cards
 	player_cards = []
 	dealer_cards = []
+
 
 	player_cards << game_deck.pop
 	dealer_cards << game_deck.pop
@@ -104,7 +105,6 @@ game_deck.shuffle!
 	end
 
 	# Dealer turn
-
 	if dealer_total == 21
 		puts "Sorry, the dealer hit Blackjack. You lose!"
 		exit
@@ -147,5 +147,9 @@ game_deck.shuffle!
 	else 
 		puts "It's a tie..."
 	end
+	puts "Would you like to play another round (y/n)?"
+	break if gets.chomp.downcase !='y'
+end
 
-	exit
+
+
